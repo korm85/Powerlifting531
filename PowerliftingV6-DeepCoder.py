@@ -101,6 +101,25 @@ st.title('5/3/1 Workout Tracker')
 # Sidebar for navigation
 page = st.sidebar.radio('Navigate', ['Record Lift', 'View Progress', 'Manage Training Max', 'Manage Weights', 'View Previous Cycles'])
 
+# Register service worker and manifest
+st.markdown(
+    """
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    """,
+    unsafe_allow_html=True,
+)
+
 if page == 'Record Lift':
     st.header('Record Lift')
     
